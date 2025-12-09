@@ -6,6 +6,7 @@ import Bills from "../Pages/Bills";
 import Profile from "../Pages/Profile";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
+import Error from "../Pages/Error";
 
 
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/*',
+                element: <Error></Error>
             },
         ]
     },

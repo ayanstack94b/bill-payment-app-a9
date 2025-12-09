@@ -14,16 +14,16 @@ const Register = () => {
         console.log(password, email);
     }
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 w-full lg:gap-50 my-10 lg:mx-20 xl:mx-40">
+        <div className="mx-auto justify-center my-10">
 
             {/* image artwork section */}
             {/* <section className='hidden lg:block grid-cols-10 md:hidden'>
                 <img src={bannerImg} alt="" />
             </section> */}
             {/* Login section */}
-            <section className="lg:justify-end md:w-full lg:grid-cols-2 ">
+            <section className="lg:justify-end md:w-full">
                 <div className="md:mx-auto max-w-md p-8 space-y-3 rounded-xl dark:bg-[#DFD9D4] dark:text-gray-800">
-                    <h1 className="text-4xl font-extrabold text-center dark:text-[#E93F56]">Login</h1>
+                    <h1 className="text-4xl font-extrabold text-center dark:text-[#E93F56]">Register</h1>
                     <form onSubmit={handleRegister} noValidate="" action="" className="space-y-6">
                         {/* Name */}
                         <div className="space-y-1 text-sm">
@@ -38,15 +38,15 @@ const Register = () => {
                         {/* Password */}
                         <div className="space-y-1 text-sm">
                             <label htmlFor="password" className="block dark:text-gray-600">Password</label>
-                            <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-purple-600" />
+                            <input type="text" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-purple-600" />
                             {/* <div className="flex justify-end text-xs dark:text-gray-600">
                                 <a rel="noopener noreferrer" href="#">Forgot Password?</a>
                             </div> */}
                         </div>
                         {/*Confirm Password */}
                         <div className="space-y-1 text-sm">
-                            <label htmlFor="password" className="block dark:text-gray-600">Password</label>
-                            <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-purple-600" />
+                            <label htmlFor="password" className="block dark:text-gray-600">Confirm Password</label>
+                            <input type="text" name="confirmPassword" id="password" placeholder="Confirm Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-purple-600" />
                             {/* <div className="flex justify-end text-xs dark:text-gray-600">
                                 <a rel="noopener noreferrer" href="#">Forgot Password?</a>
                             </div> */}
