@@ -1,14 +1,31 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import bannerImg from '../assets/LoginPageBanner.jpg'
 import { NavLink } from 'react-router';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import auth from '../Firebase/firebase.init';
+import { sharedContext } from '../Layout/RootsLayout';
 const Login = () => {
+    const { handleSignIn } = useContext(sharedContext)
     const handleLogin = (e) => {
         e.preventDefault()
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(password, email);
+
+        handleSignIn(auth, email, password)
+            .then((result) => {
+                // Signed up 
+                const user = result.user;
+                console.log(user);
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
     }
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 w-full lg:gap-50 my-10 lg:mx-20 xl:mx-40">
@@ -40,14 +57,7 @@ const Login = () => {
 
                     <p className="text-center font-bold text-[20px]">Or</p>
 
-                    <div className="flex justify-center space-x-4">
-                        <button aria-label="Login with Google" type="button" className="flex items-center justify-center w-full p-4 space-x-4  rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-[#E93F56] bg-[#F9FAFB]">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5 fill-current">
-                                <FcGoogle size={35}></FcGoogle>
-                            </svg>
-                            <p>Login with Google</p>
-                        </button>
-                    </div>
+
                     <p className="text-xs text-center sm:px-6 dark:text-gray-600">Don't have an account?
                         <NavLink to='/register' rel="noopener noreferrer" href="#" className="underline dark:text-[#E93F56] font-bold ml-2">Retgister</NavLink>
                     </p>

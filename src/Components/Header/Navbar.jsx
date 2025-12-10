@@ -1,8 +1,12 @@
-import React from 'react';
+import { useContext } from 'react';
 import themeLogo from '../../../public/themeLogo.png'
 import { NavLink, useNavigate } from 'react-router';
+import { sharedContext } from '../../Layout/RootsLayout';
+
 const Navbar = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const value = useContext(sharedContext)
+    console.log(value);
     return (
         <header className="p-4 dark:bg-[#DFD9D4] text-white">
             <div className="container flex justify-between h-16 mx-auto">
