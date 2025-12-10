@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "bill_type": "electricity",
+    "icon": "https://example.com/icons/electricity.png",
+    "organization": "DESCO",
+    "amount": 1890,
+    "due_date": "2025-03-22T06:57:58.110Z"
+  },
+  {
+    "id": 2,
+    "bill_type": "gas",
+    "icon": "https://example.com/icons/gas.png",
+    "organization": "Titas Gas",
+    "amount": 1488,
+    "due_date": "2025-03-28T06:57:58.110Z"
+  },
+  {
+    "id": 3,
+    "bill_type": "internet",
+    "icon": "https://example.com/icons/internet.png",
+    "organization": "BDCom",
+    "amount": 999,
+    "due_date": "2025-03-20T06:57:58.110Z"
+  },
+  {
+    "id": 4,
+    "bill_type": "water",
+    "icon": "https://example.com/icons/water.png",
+    "organization": "WASA",
+    "amount": 450,
+    "due_date": "2025-03-18T06:57:58.110Z"
+  },
+  {
+    "id": 5,
+    "bill_type": "credit_card",
+    "icon": "https://example.com/icons/creditcard.png",
+    "organization": "City Bank",
+    "amount": 3200,
+    "due_date": "2025-03-25T06:57:58.110Z"
+  },
+  {
+    "id": 6,
+    "bill_type": "tuition_fee",
+    "icon": "https://example.com/icons/tuition.png",
+    "organization": "North South College",
+    "amount": 5500,
+    "due_date": "2025-03-30T06:57:58.110Z"
+  },
+  {
+    "id": 7,
+    "bill_type": "mobile_recharge",
+    "icon": "https://example.com/icons/mobile.png",
+    "organization": "Airtel",
+    "amount": 299,
+    "due_date": "2025-03-15T06:57:58.110Z"
+  },
+  {
+    "id": 8,
+    "bill_type": "tv_subscription",
+    "icon": "https://example.com/icons/tv.png",
+    "organization": "Netflix",
+    "amount": 799,
+    "due_date": "2025-03-27T06:57:58.110Z"
+  }
+]

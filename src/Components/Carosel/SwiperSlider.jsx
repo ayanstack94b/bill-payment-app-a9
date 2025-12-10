@@ -1,6 +1,10 @@
 import React, { useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
+import slide1 from '../../assets/Slider1.jpg'
+import slide2 from '../../assets/Slider2.jpg'
+import slide3 from '../../assets/Slider3.jpg'
+import slide4 from '../../assets/Slider4.jpg'
 import slide5 from '../../assets/Slider5.jpg'
 // Import Swiper styles
 import 'swiper/css/pagination';
@@ -16,17 +20,43 @@ const SwiperSlider = () => {
     return (
         <>
             <Swiper pagination={{ type: 'progressbar' }} navigation={true} modules={[Pagination, Navigation]} className="mySwiper">
-                <SwiperSlide>Slide 1</SwiperSlide>
-                <SwiperSlide className='w-full h-full'>
-                    <img src={slide5} alt="" className="object-contain 2xl:rounded-2xl sm:h-80 lg:h-96 xl:h-112 2xl:h-128" />
+                <SwiperSlide className="flex items-center justify-center w-full h-full">
+                    <img
+                        src={slide1}
+                        alt=""
+                        className="w-full h-full object-cover rounded-xl"
+                    />
                 </SwiperSlide>
-                <SwiperSlide>Slide 3</SwiperSlide>
-                <SwiperSlide>Slide 4</SwiperSlide>
-                <SwiperSlide>Slide 5</SwiperSlide>
-                <SwiperSlide>Slide 6</SwiperSlide>
-                <SwiperSlide>Slide 7</SwiperSlide>
-                <SwiperSlide>Slide 8</SwiperSlide>
-                <SwiperSlide>Slide 9</SwiperSlide>
+                <SwiperSlide className="flex items-center justify-center w-full h-full">
+                    <img
+                        src={slide2}
+                        alt=""
+                        className="w-full h-full object-cover rounded-xl"
+                    />
+                </SwiperSlide>
+                <SwiperSlide className="flex items-center justify-center w-full h-full">
+                    <img
+                        src={slide3}
+                        alt=""
+                        className="w-full h-full object-cover rounded-xl"
+                    />
+                </SwiperSlide>
+                <SwiperSlide className="flex items-center justify-center w-full h-full">
+                    <img
+                        src={slide4}
+                        alt=""
+                        className="w-full h-full object-cover rounded-xl"
+                    />
+                </SwiperSlide>
+                <SwiperSlide className="flex items-center justify-center w-full h-full">
+                    <img
+                        src={slide5}
+                        alt=""
+                        className="w-full h-full object-cover rounded-xl"
+                    />
+                </SwiperSlide>
+
+
             </Swiper>
         </>
     );
