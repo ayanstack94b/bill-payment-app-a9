@@ -6,9 +6,9 @@ const Navbar = () => {
     return (
         <header className="p-4 dark:bg-[#DFD9D4] text-white">
             <div className="container flex justify-between h-16 mx-auto">
-                <a rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex items-center p-2">
+                <NavLink to='/' rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex items-center p-2">
                     <img className='w-15 h-15' src={themeLogo} alt="" srcset="" />
-                </a>
+                </NavLink>
                 <ul className="items-stretch hidden space-x-3 lg:flex">
                     <li className="flex">
                         <NavLink to='/' rel="noopener noreferrer" href="#" className="flex items-center px-4 -mb-1 font-semibold dark:text-[#E93F56] ">Home</NavLink>
