@@ -5,8 +5,9 @@ import { sharedContext } from '../../Layout/RootsLayout';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const value = useContext(sharedContext)
-    console.log(value);
+    const { currentUser, setCurrentUser } = useContext(sharedContext);
+
+    // console.log(value);
     return (
         <header className="p-4 dark:bg-[#DFD9D4] text-white">
             <div className="container flex justify-between h-16 mx-auto">
@@ -28,6 +29,10 @@ const Navbar = () => {
                 <div className="items-center hidden lg:flex ">
                     <button onClick={() => navigate('/login')} className="self-center px-8 mr-3 py-3 text-[23px] text-rose-600 font-extrabold">Login</button>
                     <button onClick={() => navigate('/register')} className="self-center px-8 py-3 font-semibold rounded dark:bg-[#E93F56] dark:text-gray-50">Register</button>
+                    {
+                        currentUser && <img src={currentUser?.photoURL} alt="" />
+                    }
+
                 </div>
                 <button className="p-4 lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-800">

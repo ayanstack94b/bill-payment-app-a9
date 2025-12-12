@@ -2,10 +2,12 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } f
 import { FcGoogle } from 'react-icons/fc';
 import { NavLink } from 'react-router';
 import auth from '../Firebase/firebase.init';
+import { useContext } from 'react';
+import { sharedContext } from '../Layout/RootsLayout';
 
 const Register = () => {
     const provider = new GoogleAuthProvider();
-
+    const { LoginWithGoogle } = useContext(sharedContext);
     const handleLoginWithGoogle = () => {
         signInWithPopup(auth, provider)
             .then((result) => {

@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import { Outlet } from 'react-router';
 import Navbar from '../Components/Header/Navbar';
 import Footer from '../Pages/Footer';
@@ -8,13 +8,20 @@ export const sharedContext = createContext();
 
 const RootsLayout = () => {
 
+    const [currentUser, setCurrentUser] = useState(null);
+
     const handleSignIn = (auth, email, password) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
+    const handleLoginWithGoogle = () => {
 
+    }
 
     const contextData = {
         handleSignIn,
+        currentUser,
+        setCurrentUser,
+        handleLoginWithGoogle
     }
 
 

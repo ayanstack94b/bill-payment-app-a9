@@ -1,12 +1,13 @@
-import React, { useContext } from 'react';
-import { FcGoogle } from 'react-icons/fc';
+import React, { useContext, useState } from 'react';
 import bannerImg from '../assets/LoginPageBanner.jpg'
-import { NavLink } from 'react-router';
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { NavLink, useNavigate } from 'react-router';
 import auth from '../Firebase/firebase.init';
 import { sharedContext } from '../Layout/RootsLayout';
 const Login = () => {
-    const { handleSignIn } = useContext(sharedContext)
+    const { handleSignIn, currentUser, setCurrentUser } = useContext(sharedContext);
+
+    const navigate = useNavigate()
+
     const handleLogin = (e) => {
         e.preventDefault()
         const form = e.target;
@@ -18,6 +19,7 @@ const Login = () => {
             .then((result) => {
                 // Signed up 
                 const user = result.user;
+                setCurrentUser(user)
                 console.log(user);
                 // ...
             })
@@ -53,9 +55,8 @@ const Login = () => {
                             </div>
                         </div>
                         <button type='submit' className="block w-full p-3 text-center font-bold text-[20px] rounded-sm dark:text-gray-50 dark:bg-[#E93F56]">Login</button>
+                       
                     </form>
-
-                    <p className="text-center font-bold text-[20px]">Or</p>
 
 
                     <p className="text-xs text-center sm:px-6 dark:text-gray-600">Don't have an account?
