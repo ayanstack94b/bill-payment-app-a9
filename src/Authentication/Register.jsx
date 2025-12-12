@@ -7,9 +7,11 @@ import { sharedContext } from '../Layout/RootsLayout';
 
 const Register = () => {
     const provider = new GoogleAuthProvider();
-    const { LoginWithGoogle } = useContext(sharedContext);
+    const { LoginWithGoogle, handleSignUp } = useContext(sharedContext);
+
     const handleLoginWithGoogle = () => {
-        signInWithPopup(auth, provider)
+
+        LoginWithGoogle(auth, provider)
             .then((result) => {
                 // This gives you a Google Access Token. You can use it to access the Google API.
                 const credential = GoogleAuthProvider.credentialFromResult(result);
@@ -35,7 +37,7 @@ const Register = () => {
 
         // console.log(name, email, password, confirmPassword);
 
-        createUserWithEmailAndPassword(auth, email, password)
+        handleSignUp(auth, email, password)
             .then((result) => {
                 // Signed up 
                 const user = result.user;
@@ -74,9 +76,6 @@ const Register = () => {
                         <div className="space-y-1 text-sm">
                             <label htmlFor="confirmPassword" className="block dark:text-gray-600">Confirm Password</label>
                             <input type="text" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-purple-600" />
-                            {/* <div className="flex justify-end text-xs dark:text-gray-600">
-                                <a rel="noopener noreferrer" href="#">Forgot Password?</a>
-                            </div> */}
                         </div>
                         <button type='submit' className="block w-full p-3 text-center font-bold text-[20px] rounded-sm dark:text-gray-50 dark:bg-[#E93F56]">Register</button>
                     </form>

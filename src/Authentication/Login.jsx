@@ -15,12 +15,12 @@ const Login = () => {
         const password = form.password.value;
         console.log(password, email);
 
-        handleSignIn(auth, email, password)
+        handleSignIn(email, password)
             .then((result) => {
                 // Signed up 
                 const user = result.user;
-                setCurrentUser(user)
                 console.log(user);
+                navigate('/bills')
                 // ...
             })
             .catch((error) => {
@@ -37,7 +37,7 @@ const Login = () => {
                 <img src={bannerImg} alt="" />
             </section>
             {/* Login section */}
-            <section className="lg:justify-end md:w-full lg:grid-cols-2 ">
+            <section className="lg:justify-end md:w-full lg:grid-cols-2 lg:mt-15">
                 <div className="md:mx-auto max-w-md p-8 space-y-3 rounded-xl dark:bg-[#DFD9D4] dark:text-gray-800">
                     <h1 className="text-4xl font-extrabold text-center dark:text-[#E93F56]">Login</h1>
                     <form onSubmit={handleLogin} noValidate="" action="" className="space-y-6">
@@ -55,7 +55,7 @@ const Login = () => {
                             </div>
                         </div>
                         <button type='submit' className="block w-full p-3 text-center font-bold text-[20px] rounded-sm dark:text-gray-50 dark:bg-[#E93F56]">Login</button>
-                       
+
                     </form>
 
 

@@ -2,10 +2,15 @@ import { useContext } from 'react';
 import themeLogo from '../../../public/themeLogo.png'
 import { NavLink, useNavigate } from 'react-router';
 import { sharedContext } from '../../Layout/RootsLayout';
+import { FaUserCircle } from 'react-icons/fa';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { currentUser, setCurrentUser } = useContext(sharedContext);
+    const { currentUser, setCurrentUser, loading, handleSignOut } = useContext(sharedContext);
+    const defaultAvatar = <FaUserCircle size={40} className='mr-5 text-green-600 border-2xl bg-black rounded-3xl ' />
+    if (loading) {
+        return null;
+    }
 
     // console.log(value);
     return (
@@ -27,11 +32,41 @@ const Navbar = () => {
 
                 </ul>
                 <div className="items-center hidden lg:flex ">
-                    <button onClick={() => navigate('/login')} className="self-center px-8 mr-3 py-3 text-[23px] text-rose-600 font-extrabold">Login</button>
-                    <button onClick={() => navigate('/register')} className="self-center px-8 py-3 font-semibold rounded dark:bg-[#E93F56] dark:text-gray-50">Register</button>
                     {
-                        currentUser && <img src={currentUser?.photoURL} alt="" />
+                        currentUser ? (
+                            <>
+                                {currentUser.photoURL ? (
+                                    <img className="w-10 h-10 rounded-full ml-3" src={currentUser.photoURL} />
+                                ) : (
+                                    defaultAvatar
+                                )}
+
+                                <button
+                                    onClick={handleSignOut}
+                                    className="px-8 py-3 font-semibold rounded dark:bg-[#E93F56] dark:text-gray-50"
+                                >
+                                    Logout
+                                </button>
+                            </>
+                        ) : (
+                            <>
+                                <button
+                                    onClick={() => navigate('/login')}
+                                    className="px-8 mr-3 py-3 text-[23px] text-rose-600 font-extrabold"
+                                >
+                                    Login
+                                </button>
+                                <button
+                                    onClick={() => navigate('/register')}
+                                    className="px-8 py-3 font-semibold rounded dark:bg-[#E93F56] dark:text-gray-50"
+                                >
+                                    Register
+                                </button>
+                            </>
+                        )
                     }
+
+
 
                 </div>
                 <button className="p-4 lg:hidden">
