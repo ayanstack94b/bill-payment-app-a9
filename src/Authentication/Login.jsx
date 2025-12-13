@@ -3,9 +3,11 @@ import bannerImg from '../assets/LoginPageBanner.jpg'
 import { NavLink, useNavigate } from 'react-router';
 import auth from '../Firebase/firebase.init';
 import { sharedContext } from '../Layout/RootsLayout';
+import { GoogleAuthProvider } from 'firebase/auth';
+import { FcGoogle } from 'react-icons/fc';
 const Login = () => {
-    const { handleSignIn, currentUser, setCurrentUser } = useContext(sharedContext);
-
+    const { handleSignIn, currentUser, setCurrentUser, LoginWithGoogle } = useContext(sharedContext);
+    const provider = new GoogleAuthProvider();
     const navigate = useNavigate()
 
     const handleLogin = (e) => {
@@ -24,6 +26,28 @@ const Login = () => {
                 // ...
             })
             .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage);
+            });
+    }
+    // Login with google
+    const handleLoginWithGoogle = () => {
+
+        LoginWithGoogle(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                {
+                    user && navigate('/')
+                }
+                console.log(user);
+
+            }).catch((error) => {
+                // Handle Errors here.
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage);
@@ -57,7 +81,18 @@ const Login = () => {
                         <button type='submit' className="block w-full p-3 text-center font-bold text-[20px] rounded-sm dark:text-gray-50 dark:bg-[#E93F56]">Login</button>
 
                     </form>
+                    <p className="block text-center text-gray-500"><span className='font-bold text-xl text-black font-sherif'>Or</span></p>
 
+                    {/* Google login */}
+
+                    <div onClick={handleLoginWithGoogle} className="flex justify-center space-x-4">
+                        <button aria-label="Login with Google" type="button" className="flex items-center justify-center w-full p-4 space-x-4  rounded-md focus:ring-2 focus:ring-offset-2 dark:border-gray-600 focus:dark:ring-[#E93F56] bg-[#F9FAFB]">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" className="w-5 h-5 fill-current">
+                                <FcGoogle size={35}></FcGoogle>
+                            </svg>
+                            <p>Login with Google</p>
+                        </button>
+                    </div>
 
                     <p className="text-xs text-center sm:px-6 dark:text-gray-600">Don't have an account?
                         <NavLink to='/register' rel="noopener noreferrer" href="#" className="underline dark:text-[#E93F56] font-bold ml-2">Retgister</NavLink>

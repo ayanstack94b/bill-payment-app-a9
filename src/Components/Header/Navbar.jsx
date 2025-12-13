@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import themeLogo from '../../../public/themeLogo.png'
 import { NavLink, useNavigate } from 'react-router';
 import { sharedContext } from '../../Layout/RootsLayout';
@@ -7,10 +7,22 @@ import { FaUserCircle } from 'react-icons/fa';
 const Navbar = () => {
     const navigate = useNavigate();
     const { currentUser, setCurrentUser, loading, handleSignOut } = useContext(sharedContext);
-    const defaultAvatar = <FaUserCircle size={40} className='mr-5 text-green-600 border-2xl bg-black rounded-3xl ' />
+    const [imgError, setImgError] = useState(false);
+    const defaultAvatar = (
+        <div className="relative w-10 h-10 mr-5 flex items-center justify-center rounded-full bg-emerald-500/15 border border-emerald-500">
+            <FaUserCircle className="text-emerald-600" size={26} />
+            <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
+        </div>
+    );
     if (loading) {
         return null;
     }
+
+    useEffect(() => {
+        if (!loading && currentUser === null) {
+            navigate('/login');
+        }
+    }, [currentUser, loading, navigate]);
 
     // console.log(value);
     return (
@@ -35,8 +47,9 @@ const Navbar = () => {
                     {
                         currentUser ? (
                             <>
-                                {currentUser.photoURL ? (
-                                    <img className="w-10 h-10 rounded-full ml-3" src={currentUser.photoURL} />
+                                {currentUser.photoURL && imgError ? (
+                                    <img className="w-10 h-10 rounded-full ml-3" src={currentUser.photoURL}
+                                        onError={() => setImgError(true)} />
                                 ) : (
                                     defaultAvatar
                                 )}
@@ -65,10 +78,8 @@ const Navbar = () => {
                             </>
                         )
                     }
-
-
-
                 </div>
+
                 <button className="p-4 lg:hidden">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-800">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
