@@ -7,6 +7,7 @@ import Profile from "../Pages/Profile";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import Error from "../Pages/Error";
+import Edit from "../Pages/Edit";
 
 
 const router = createBrowserRouter([
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <Profile></Profile>
+            },
+            {
+                path: '/profile/edit',
+                element: <Edit></Edit>
             },
             {
                 path: '/login',
