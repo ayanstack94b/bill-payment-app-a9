@@ -8,7 +8,8 @@ import { FcGoogle } from 'react-icons/fc';
 const Login = () => {
     const { handleSignIn, currentUser, setCurrentUser, LoginWithGoogle } = useContext(sharedContext);
     const provider = new GoogleAuthProvider();
-    const navigate = useNavigate()
+    const from = location.state?.from?.pathname || "/bills";
+    const navigate = useNavigate();
 
     const handleLogin = (e) => {
         e.preventDefault()
@@ -22,7 +23,8 @@ const Login = () => {
                 // Signed up 
                 const user = result.user;
                 console.log(user);
-                navigate('/bills')
+                // navigate('/bills')
+                navigate(from, { replace: true });
                 // ...
             })
             .catch((error) => {

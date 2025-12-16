@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { FcGoogle } from 'react-icons/fc';
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import auth from '../Firebase/firebase.init';
 import { useContext } from 'react';
 import { sharedContext } from '../Layout/RootsLayout';
@@ -8,7 +8,8 @@ import { sharedContext } from '../Layout/RootsLayout';
 const Register = () => {
     const provider = new GoogleAuthProvider();
     const { LoginWithGoogle, handleSignUp } = useContext(sharedContext);
-
+    const from = location.state?.from?.pathname || "/";
+    const navigate = useNavigate();
     const handleLoginWithGoogle = () => {
 
         LoginWithGoogle(auth, provider)
@@ -18,6 +19,7 @@ const Register = () => {
                 const token = credential.accessToken;
                 // The signed-in user info.
                 const user = result.user;
+                navigate(from, { replace: true });
                 console.log(user);
 
             }).catch((error) => {

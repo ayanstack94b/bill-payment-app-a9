@@ -9,6 +9,7 @@ import Register from "../Authentication/Register";
 import Error from "../Pages/Error";
 import Edit from "../Pages/Edit";
 import SingleBill from "../Pages/SingleBill";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 const router = createBrowserRouter([
@@ -18,11 +19,15 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home></Home>
+                element: <Home />
             },
             {
                 path: '/bills',
-                element: <Bills></Bills>,
+                element: (
+                    <PrivateRoute>
+                        <Bills />
+                    </PrivateRoute>
+                ),
                 loader: async () => {
                     const res = await fetch('/Fakedata.json');
                     if (!res.ok) throw new Error('Failed to load bills');
@@ -30,35 +35,48 @@ const router = createBrowserRouter([
                 }
             },
             {
-                path: "/bills/:id",
-                element: <SingleBill />,
+                path: '/bills/:id',
+                element: (
+                    <PrivateRoute>
+                        <SingleBill />
+                    </PrivateRoute>
+                ),
                 loader: async ({ params }) => {
-                    const res = await fetch("/Fakedata.json");
+                    const res = await fetch('/Fakedata.json');
                     const data = await res.json();
                     return data.find(bill => bill.id === Number(params.id));
                 }
             },
             {
                 path: '/profile',
-                element: <Profile></Profile>
+                element: (
+                    <PrivateRoute>
+                        <Profile />
+                    </PrivateRoute>
+                )
             },
             {
                 path: '/profile/edit',
-                element: <Edit></Edit>
+                element: (
+                    <PrivateRoute>
+                        <Edit />
+                    </PrivateRoute>
+                )
             },
             {
                 path: '/login',
-                element: <Login></Login>
+                element: <Login />
             },
             {
                 path: '/register',
-                element: <Register></Register>
+                element: <Register />
             },
             {
                 path: '/*',
-                element: <Error></Error>
-            },
+                element: <Error />
+            }
         ]
+
     },
 
 ]);
