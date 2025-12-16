@@ -8,6 +8,7 @@ import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import Error from "../Pages/Error";
 import Edit from "../Pages/Edit";
+import SingleBill from "../Pages/SingleBill";
 
 
 const router = createBrowserRouter([
@@ -21,7 +22,21 @@ const router = createBrowserRouter([
             },
             {
                 path: '/bills',
-                element: <Bills></Bills>
+                element: <Bills></Bills>,
+                loader: async () => {
+                    const res = await fetch('/Fakedata.json');
+                    if (!res.ok) throw new Error('Failed to load bills');
+                    return res.json();
+                }
+            },
+            {
+                path: "/bills/:id",
+                element: <SingleBill />,
+                loader: async ({ params }) => {
+                    const res = await fetch("/Fakedata.json");
+                    const data = await res.json();
+                    return data.find(bill => bill.id === Number(params.id));
+                }
             },
             {
                 path: '/profile',

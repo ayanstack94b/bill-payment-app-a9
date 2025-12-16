@@ -25,7 +25,7 @@ const Profile = () => {
             {/* Avatar */}
             <div className="flex justify-center sm:justify-start mb-6 sm:mb-0">
                 {
-                    currentUser.photoURL ? (
+                    currentUser?.photoURL ? (
                         <img src={currentUser.photoURL} className="w-24 h-24 rounded-full object-cover"></img>
                     ) : (
                         defaultAvatar
@@ -36,10 +36,10 @@ const Profile = () => {
             <div className="flex flex-col space-y-4 text-center sm:text-left">
                 <div className="">
                     <h2 className="text-2xl font-semibold">
-                        {currentUser.displayName || "No name set"}
+                        {currentUser?.displayName || "No name set"}
                     </h2>
                     <p className="text-sm dark:text-gray-600">
-                        {currentUser.email}
+                        {currentUser?.email}
                     </p>
                 </div>
 

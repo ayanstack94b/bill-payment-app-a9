@@ -6,7 +6,7 @@ import { FaUserCircle } from 'react-icons/fa';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { currentUser, setCurrentUser, loading, handleSignOut } = useContext(sharedContext);
+    const { currentUser, setCurrentUser, loading, handleSignOut, balance } = useContext(sharedContext);
     const [imgError, setImgError] = useState(false);
     const defaultAvatar = (
         <div className="relative w-10 h-10 mr-5 flex items-center justify-center rounded-full bg-emerald-500/15 border border-emerald-500">
@@ -60,6 +60,9 @@ const Navbar = () => {
                                 >
                                     Logout
                                 </button>
+                                <span className="ml-4 font-bold text-emerald-600">
+                                    Balance: ₹{balance}
+                                </span>
                             </>
                         ) : (
                             <>

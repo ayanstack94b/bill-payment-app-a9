@@ -11,6 +11,9 @@ const RootsLayout = () => {
 
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [balance, setBalance] = useState(10000);
+    const [paidBills, setPaidBills] = useState([]);
+
     const provider = new GoogleAuthProvider();
     // creating an user
     const handleSignUp = (auth, email, password) => {
@@ -36,7 +39,19 @@ const RootsLayout = () => {
             setLoading(false)
         });
         return () => unSubscribe();
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        const stored = JSON.parse(localStorage.getItem("paidBills"));
+        if (stored) {
+            setPaidBills(stored);
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem("paidBills", JSON.stringify(paidBills));
+    }, [paidBills]);
+
 
     const contextData = {
         handleSignIn,
@@ -45,7 +60,11 @@ const RootsLayout = () => {
         LoginWithGoogle,
         handleSignUp,
         handleSignOut,
-        loading
+        setBalance,
+        balance,
+        loading,
+        setPaidBills,
+        paidBills,
     }
 
     return (
