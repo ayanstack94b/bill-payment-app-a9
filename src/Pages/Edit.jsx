@@ -12,7 +12,7 @@ const Edit = () => {
         const form = e.target;
         const name = form.name.value;
         const photo = form.photo.value;
-        console.log('submitted', name, photo);
+        // console.log('submitted', name, photo);
 
         updateProfile(currentUser, {
             displayName: name,

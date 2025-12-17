@@ -29,7 +29,7 @@ const Navbar = () => {
         <header className="p-4 dark:bg-[#DFD9D4] text-white">
             <div className="container flex justify-between h-16 mx-auto">
                 <NavLink to='/' rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex items-center p-2">
-                    <img className='w-15 h-15' src={themeLogo} alt="" srcset="" />
+                    <img className='w-15 h-15' src={themeLogo} />
                 </NavLink>
                 <ul className="items-stretch hidden space-x-3 lg:flex">
                     <li className="flex">

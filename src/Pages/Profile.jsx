@@ -5,7 +5,7 @@ import { FaUserCircle } from 'react-icons/fa';
 
 const Profile = () => {
     const { currentUser, loading } = useContext(sharedContext)
-    console.log(currentUser);
+    // console.log(currentUser);
     const navigate = useNavigate();
 
     if (loading) {

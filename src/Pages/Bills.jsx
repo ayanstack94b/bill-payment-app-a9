@@ -4,7 +4,7 @@ import { useLoaderData, useNavigate } from 'react-router';
 const Bills = () => {
     const bills = useLoaderData()
     const navigate = useNavigate()
-    console.log(bills);
+    // console.log(bills);
 
     return (
         <div className="max-w-5xl mx-auto p-6 space-y-4">

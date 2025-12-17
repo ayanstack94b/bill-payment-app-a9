@@ -8,7 +8,7 @@ const Footer = () => {
             <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
                 <div className="lg:w-1/3">
                     <NavLink to='/' rel="noopener noreferrer" href="#" aria-label="Back to homepage" className="flex items-center p-2">
-                        <img className='w-15 h-15' src={themeLogo} alt="" srcset="" />
+                        <img className='w-15 h-15' src={themeLogo} alt=""/>
                         <span className="self-center text-2xl font-semibold ml-3">BillNexa</span>
                     </NavLink>
                 </div>

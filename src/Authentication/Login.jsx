@@ -14,47 +14,56 @@ const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         const form = e.target;
-        const email = form.email.value;
+        const email = form.email.value.trim();
         const password = form.password.value;
-        console.log(password, email);
+        // console.log(password, email);
+
+        if (!email) {
+            alert("Email is required");
+            return;
+        }
+
+        if (!password) {
+            alert("Password is required");
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address");
+            return;
+        }
 
         handleSignIn(email, password)
             .then((result) => {
                 // Signed up 
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 // navigate('/bills')
                 navigate(from, { replace: true });
-                // ...
+
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorMessage);
+                if (error.code === "auth/user-not-found") {
+                    alert("No account found with this email");
+                } else if (error.code === "auth/wrong-password") {
+                    alert("Incorrect password");
+                } else {
+                    alert(error.message);
+                }
             });
     }
     // Login with google
-    const handleLoginWithGoogle = () => {
 
+    const handleLoginWithGoogle = () => {
         LoginWithGoogle(auth, provider)
             .then((result) => {
-                // This gives you a Google Access Token. You can use it to access the Google API.
-                const credential = GoogleAuthProvider.credentialFromResult(result);
-                const token = credential.accessToken;
-                // The signed-in user info.
-                const user = result.user;
-                {
-                    user && navigate('/')
-                }
-                console.log(user);
-
-            }).catch((error) => {
-                // Handle Errors here.
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.log(errorMessage);
+                navigate(from, { replace: true });
+            })
+            .catch((error) => {
+                alert(error.message);
             });
-    }
+    };
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2 w-full lg:gap-50 my-10 lg:mx-20 xl:mx-40">
 
@@ -69,16 +78,16 @@ const Login = () => {
                     <form onSubmit={handleLogin} noValidate="" action="" className="space-y-6">
                         <div className="space-y-1 text-sm">
                             {/* email */}
-                            <label htmlFor="username" className="block dark:text-gray-600">Email</label>
-                            <input type="text" name="email" id="username" placeholder="Email please!!!" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-purple-600" />
+                            <label htmlFor="email" className="block dark:text-gray-600">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Email please!!!" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-purple-600" />
                         </div>
                         {/* Password */}
                         <div className="space-y-1 text-sm">
                             <label htmlFor="password" className="block dark:text-gray-600">Password</label>
                             <input type="password" name="password" id="password" placeholder="Password" className="w-full px-4 py-3 rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-purple-600" />
-                            <div className="flex justify-end text-xs dark:text-gray-600">
+                            {/* <div className="flex justify-end text-xs dark:text-gray-600">
                                 <a rel="noopener noreferrer" href="#">Forgot Password?</a>
-                            </div>
+                            </div> */}
                         </div>
                         <button type='submit' className="block w-full p-3 text-center font-bold text-[20px] rounded-sm dark:text-gray-50 dark:bg-[#E93F56]">Login</button>
 
@@ -97,7 +106,7 @@ const Login = () => {
                     </div>
 
                     <p className="text-xs text-center sm:px-6 dark:text-gray-600">Don't have an account?
-                        <NavLink to='/register' rel="noopener noreferrer" href="#" className="underline dark:text-[#E93F56] font-bold ml-2">Retgister</NavLink>
+                        <NavLink to='/register' rel="noopener noreferrer" href="#" className="underline dark:text-[#E93F56] font-bold ml-2">Register</NavLink>
                     </p>
                 </div>
 
