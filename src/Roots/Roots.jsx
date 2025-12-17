@@ -10,6 +10,7 @@ import Error from "../Pages/Error";
 import Edit from "../Pages/Edit";
 import SingleBill from "../Pages/SingleBill";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Loading from "../Pages/Loading";
 
 
 const router = createBrowserRouter([
@@ -32,7 +33,8 @@ const router = createBrowserRouter([
                     const res = await fetch('/Fakedata.json');
                     if (!res.ok) throw new Error('Failed to load bills');
                     return res.json();
-                }
+                },
+                hydrateFallbackElement: <Loading></Loading>
             },
             {
                 path: '/bills/:id',
@@ -45,7 +47,8 @@ const router = createBrowserRouter([
                     const res = await fetch('/Fakedata.json');
                     const data = await res.json();
                     return data.find(bill => bill.id === Number(params.id));
-                }
+                },
+                hydrateFallbackElement: <Loading></Loading>
             },
             {
                 path: '/profile',

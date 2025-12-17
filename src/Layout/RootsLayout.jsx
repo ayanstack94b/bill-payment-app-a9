@@ -1,9 +1,10 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useNavigation } from 'react-router';
 import Navbar from '../Components/Header/Navbar';
 import Footer from '../Pages/Footer';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from 'firebase/auth';
 import auth from '../Firebase/firebase.init';
+import Loading from '../Pages/Loading';
 
 export const sharedContext = createContext();
 
@@ -13,6 +14,7 @@ const RootsLayout = () => {
     const [loading, setLoading] = useState(true);
     const [balance, setBalance] = useState(10000);
     const [paidBills, setPaidBills] = useState([]);
+    const { state } = useNavigation()
 
     const provider = new GoogleAuthProvider();
     // creating an user
@@ -75,12 +77,13 @@ const RootsLayout = () => {
                 ) : (
                     <div>
                         <Navbar />
-                        <Outlet />
+                            {import.meta.env.VITE_name}
+                        {state == "loading" ? < Loading /> : <Outlet />}
                         <Footer />
                     </div>
                 )
             }
-        </sharedContext.Provider>
+        </sharedContext.Provider >
     );
 };
 
